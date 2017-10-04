@@ -10,37 +10,44 @@ class PhotosController < ApplicationController
   # GET /photos/1
   # GET /photos/1.json
   def show
+    @photo = current_user.photos.find(params[:id])
   end
 
   # GET /photos/new
   def new
-    @photo =  current_user.photos.build
+    @photo = current_user.photos.build
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @photo }
+    end
   end
 
   # GET /photos/1/edit
   def edit
+    @photo = current_user.photos.find(params[:id])
   end
 
   # POST /photos
   # POST /photos.json
   def create
-    @photo = Photo.new(photo_params)
 
-    respond_to do |format|
+    @photo = current_user.photos.create!(photo_params)
+
+    
       if @photo.save
-        format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
-        format.json { render :show, status: :created, location: @photo }
+       redirect_to user_photo_path(@photo)
       else
-        format.html { render :new }
-        format.json { render json: @photo.errors, status: :unprocessable_entity }
+       render :new 
+       
       end
-    end
+    
   end
 
   # PATCH/PUT /photos/1
   # PATCH/PUT /photos/1.json
   def update
-    respond_to do |format|
+
+      respond_to do |format|
       if @photo.update(photo_params)
         format.html { redirect_to @photo, notice: 'Photo was successfully updated.' }
         format.json { render :show, status: :ok, location: @photo }
@@ -54,9 +61,10 @@ class PhotosController < ApplicationController
   # DELETE /photos/1
   # DELETE /photos/1.json
   def destroy
+    @photo = current_user.photos.find(params[:id])
     @photo.destroy
     respond_to do |format|
-      format.html { redirect_to photos_url, notice: 'Photo was successfully destroyed.' }
+      format.html { redirect_to user_photos_url, notice: 'Photo was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,7 +72,7 @@ class PhotosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_photo
-      @photo = Photo.find(params[:id])
+      
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
