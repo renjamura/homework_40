@@ -1,0 +1,29 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th>Image</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @photos.each do |photo| %>
+      <tr>
+        <td><%= photo.title %></td>
+        <td><%= photo.body %></td>
+        <td><%= link_to image_tag(photo.image.url(:med)), photo.image.url %></td>
+        <td><%= link_to photo.user.username, user_photo_personal_path(photo) %></td>
+        <td><%= link_to 'Show', user_photo_path(photo) %></td>
+        <% if current_user.id == photo.user.id %>
+          <td><%= link_to 'Edit', edit_user_photo_path(photo) %></td>
+          <td><%= link_to 'Destroy', user_photo_path(photo), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

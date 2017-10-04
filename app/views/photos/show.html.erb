@@ -12,12 +12,12 @@
 
 <p>
   <strong>Image:</strong>
-  <%= @photo.image %>
+  <%= link_to image_tag(@photo.image.url(:med)), @photo.image.url %>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= @photo.user %>
+  <%= @photo.user.username %>
 </p>
 
 <%= link_to 'Edit', edit_user_photo_path(@photo) %> |
