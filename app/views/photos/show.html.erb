@@ -20,5 +20,15 @@
   <%= @photo.user.username %>
 </p>
 
-<%= link_to 'Edit', edit_user_photo_path(@photo) %> |
+<%= link_to 'Edit', edit_photo_path(@photo) %> |
 <%= link_to 'Back', root_path %>
+
+<h2><%= link_to 'Comments', '#', id: 'comments-link' %></h2>
+<div id="comment-section">
+  <ol id="comments">
+    <%= render @photo.comments %>
+  </ol>
+
+  <h3>Add a comment:</h3>
+  <%= render 'comments/form' %>
+</div>

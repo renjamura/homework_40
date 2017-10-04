@@ -1,0 +1,10 @@
+<%= form_for [@photo, @photo.comments.build] do |f| %>
+    <div>
+     <%= f.text_field :author, :value => current_user.username,:readonly => true, class: "form-input" %>
+    </div>
+    <div>
+      Text: <%= f.text_area :body %>
+    </div>
+
+    <%= f.submit %>
+<% end %>

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   devise_for :users, :paths => 'users'
 
-  resource :user do
+  resource :user, shallow: true do 
   	get '/:id'=>'users#show', as: 'personal'
     resources :photos do
     	resources :comments

@@ -27,7 +27,7 @@ class PhotosController < ApplicationController
   def create
     @photo = current_user.photos.create!(photo_params)
     if @photo.save
-     redirect_to user_photo_path(@photo)
+     redirect_to photo_path(@photo)
     else
       render :new 
     end
@@ -36,7 +36,7 @@ class PhotosController < ApplicationController
   # PATCH/PUT /photos/1.json
   def update
     if @photo.update(photo_params)
-      redirect_to user_photos_path
+      redirect_to photos_path
     else
       render :edit
     end
