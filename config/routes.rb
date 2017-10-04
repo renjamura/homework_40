@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
   
   
+  get 'comments/create'
+
   devise_for :users, :paths => 'users'
 
   resource :user do
   	get '/:id'=>'users#show', as: 'personal'
-    resources :photos
+    resources :photos do
+    	resources :comments
+    end
   end
   
   root 'photos#index'
