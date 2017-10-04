@@ -14,7 +14,7 @@ class PhotosController < ApplicationController
 
   # GET /photos/new
   def new
-    @photo = Photo.new
+    @photo =  current_user.photos.build
   end
 
   # GET /photos/1/edit
