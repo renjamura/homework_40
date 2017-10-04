@@ -4,9 +4,8 @@ Rails.application.routes.draw do
   devise_for :users, :paths => 'users'
 
   resource :user do
-    resources :photos do
-   	  get 'personal'
-    end
+  	get '/:id'=>'users#show', as: 'personal'
+    resources :photos
   end
   
   root 'photos#index'

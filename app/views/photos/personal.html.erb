@@ -1,9 +1,0 @@
-
-
-<h1>My Photos</h1>
-
-<%= render 'index', photos: @photos %>
-
-<% if current_user.id == @user.id %>
-	<%= link_to 'New Photo', new_user_photo_path %>
-<% end %>

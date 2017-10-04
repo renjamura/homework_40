@@ -1,3 +1,7 @@
+
+
+<h1>My Photos</h1>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -15,7 +19,7 @@
         <td><%= photo.title %></td>
         <td><%= photo.body %></td>
         <td><%= link_to image_tag(photo.image.url(:med)), photo.image.url %></td>
-        <td><%= link_to photo.user.username, personal_user_path(photo.user) %></td>
+        <td><%= photo.user.username %></td>
         <td><%= link_to 'Show', user_photo_path(photo) %></td>
         <% if current_user.id == photo.user.id %>
           <td><%= link_to 'Edit', edit_user_photo_path(photo) %></td>
@@ -27,3 +31,7 @@
 </table>
 
 <br>
+
+<% if current_user.id == @user.id %>
+	<%= link_to 'New Photo', new_user_photo_path %>
+<% end %>

@@ -50,11 +50,7 @@ class PhotosController < ApplicationController
       format.json { head :no_content }
     end
   end
-  def personal
-    @photo = Photo.find(params[:photo_id])
-    @user = @photo.user
-    @photos = @user.photos.all
-  end
+ 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_photo
