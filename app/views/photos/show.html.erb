@@ -13,7 +13,7 @@
   <strong>Image:</strong>
   <%= link_to image_tag(@photo.image.url(:med)), @photo.image.url %>
 </p>
-
+<% if !current_user.blank? %>
 <p>
   <strong>User:</strong>
   <%= @photo.user.username %>
@@ -31,3 +31,4 @@
   <h3>Add a comment:</h3>
   <%= render 'comments/form' %>
 </div>
+<% end %>
