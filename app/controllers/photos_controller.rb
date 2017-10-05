@@ -14,10 +14,6 @@ class PhotosController < ApplicationController
   # GET /photos/new
   def new
     @photo = current_user.photos.build
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @photo }
-    end
   end
   # GET /photos/1/edit
   def edit
